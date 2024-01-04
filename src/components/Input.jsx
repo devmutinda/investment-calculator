@@ -13,9 +13,9 @@ export default function Input({tag, calcInvestment, children}) {
     }
 
     return (
-        <>
+        <div>
             <label>{children}</label>
-            <input type="number" value={inputValue} onChange={handleOnChange}/>
-        </>
+            <input type="number" required value={inputValue} onChange={handleOnChange}/>
+        </div>
     )
 }

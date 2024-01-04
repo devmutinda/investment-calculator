@@ -28,13 +28,11 @@ function App() {
     <>
       <Header />
       <main>
-        <section  className="input-group">
-          <div id="user-input">
-            <Input calcInvestment={saveValues} tag="initialInvestment">Initial investment</Input>
-            <Input calcInvestment={saveValues} tag="annualInvestment">Annual investment</Input>
-            <Input calcInvestment={saveValues} tag="expectedReturn">Expected Return</Input>
-            <Input calcInvestment={saveValues} tag="duration">Duration</Input>
-          </div>
+        <section className="input-group " id="user-input">
+          <Input calcInvestment={saveValues} tag="initialInvestment">Initial investment</Input>
+          <Input calcInvestment={saveValues} tag="annualInvestment">Annual investment</Input>
+          <Input calcInvestment={saveValues} tag="expectedReturn">Expected Return</Input>
+          <Input calcInvestment={saveValues} tag="duration">Duration</Input>
         </section>
         <Results values={investValues} />
       </main>
