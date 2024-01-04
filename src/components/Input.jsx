@@ -1,21 +1,13 @@
-import { useState } from "react";
-
-
-
-export default function Input({tag, calcInvestment, children}) {
-    const [inputValue, setInputValue] = useState("");
-
+export default function Input({tag, onChange, values, children}) {
     const handleOnChange = (event) => {
         const { value } = event.target;
-        setInputValue(value);
-
-        calcInvestment(tag, value);
+        onChange(tag, value);
     }
 
     return (
-        <div>
+        <p>
             <label>{children}</label>
-            <input type="number" required value={inputValue} onChange={handleOnChange}/>
-        </div>
+            <input type="number" required value={values[tag]} onChange={handleOnChange}/>
+        </p>
     )
 }

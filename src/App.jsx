@@ -4,21 +4,22 @@ import { useState } from "react";
 import Results from "./components/Results";
 
 const INITIAL_VALUES = {
-  "initialInvestment":"",
-  "annualInvestment":"",
-  "expectedReturn":"",
-  "duration":"",
+  "initialInvestment":10000,
+  "annualInvestment":1200,
+  "expectedReturn":6,
+  "duration":10,
 }
-
 
 function App() {
   const [investValues, setInvestValues] = useState({...INITIAL_VALUES});
 
-  const saveValues = (label, value) => {
+  const inputIsValid = investValues.duration >= 1;
+
+  const saveValue = (label, value) => {
     setInvestValues((prev) => {
       const newValues = {
         ...prev,
-        [label]: parseFloat(value),
+        [label]: +value,
       }
       return newValues;
     })
@@ -28,13 +29,16 @@ function App() {
     <>
       <Header />
       <main>
-        <section className="input-group " id="user-input">
-          <Input calcInvestment={saveValues} tag="initialInvestment">Initial investment</Input>
-          <Input calcInvestment={saveValues} tag="annualInvestment">Annual investment</Input>
-          <Input calcInvestment={saveValues} tag="expectedReturn">Expected Return</Input>
-          <Input calcInvestment={saveValues} tag="duration">Duration</Input>
+        <section  id="user-input">
+          <div className="input-group">
+            <Input onChange={saveValue} tag="initialInvestment" values={investValues}>Initial investment</Input>
+            <Input onChange={saveValue} tag="annualInvestment" values={investValues}>Annual investment</Input>
+            <Input onChange={saveValue} tag="expectedReturn" values={investValues}>Expected Return</Input>
+            <Input onChange={saveValue} tag="duration" values={investValues}>Duration</Input>
+          </div>
         </section>
-        <Results values={investValues} />
+        {inputIsValid && <Results values={investValues} />}
+        {!inputIsValid && <p className="center">Please enter a duration greater than zero.</p>}
       </main>
     </>
   )
